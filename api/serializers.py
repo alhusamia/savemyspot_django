@@ -33,7 +33,7 @@ class RestaurantListSerializer(serializers.ModelSerializer):
 		fields = '__all__'
 
 	def get_queue(self, obj):
-		return obj.queues.count() 
+		return obj.queues.count()
 
 class QueueListSerializer(serializers.ModelSerializer):
 	restaurant = RestaurantListSerializer()
@@ -54,6 +54,12 @@ class CategoryListSerializer(serializers.ModelSerializer):
 		model = Category
 		fields = '__all__'
 
+class QueueUserSerializer(serializers.ModelSerializer):
+    restaurant = RestaurantDetailSerializer()
+
+    class Meta:
+        model = Queue
+        fields = '__all__'
 
 class RestaurantDetailSerializer(serializers.ModelSerializer):
 	category = CategoryListSerializer(many = True)
@@ -128,9 +134,7 @@ class UserLoginSerializer(serializers.Serializer):
         payload = jwt_payload_handler(user_obj)
         token = jwt_encode_handler(payload)
 
-        
+
         data["token"] = token
 
         return data
-
-
