@@ -54,12 +54,6 @@ class CategoryListSerializer(serializers.ModelSerializer):
 		model = Category
 		fields = '__all__'
 
-class QueueUserSerializer(serializers.ModelSerializer):
-    restaurant = RestaurantDetailSerializer()
-
-    class Meta:
-        model = Queue
-        fields = '__all__'
 
 class RestaurantDetailSerializer(serializers.ModelSerializer):
 	category = CategoryListSerializer(many = True)
@@ -69,7 +63,12 @@ class RestaurantDetailSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Restaurant
 		fields = '__all__'
+class QueueUserSerializer(serializers.ModelSerializer):
+	restaurant = RestaurantDetailSerializer()
 
+	class Meta:
+		model = Queue
+		fields = '__all__'
 
 class QueueCreateSerializer(serializers.ModelSerializer):
 	class Meta:
