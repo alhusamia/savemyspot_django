@@ -68,7 +68,7 @@ class Item(models.Model):
 class Queue(models.Model):
 	position = models.IntegerField(null = True, blank = True)
 	user = models.ForeignKey(User, on_delete = models.CASCADE, null = True, blank = True)
-	restaurant = models.ForeignKey(Restaurant, on_delete = models.CASCADE, related_name = 'queue',null = True, blank = True)
+	restaurant = models.ForeignKey(Restaurant, on_delete = models.CASCADE, related_name = 'queues',null = True, blank = True)
 	guests = models.IntegerField(null = True, blank = True)
 
 	class Meta:
